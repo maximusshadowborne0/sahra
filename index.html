@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sahra — Sinai, from the desert to the Red Sea</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sahra: transport, hotels, camps and unforgettable activities across Sinai — Dahab, Sharm, Nuweiba, Taba.">
+<meta name="theme-color" content="#142B35">
+<meta property="og:title" content="Sahra — Sinai, from the desert to the Red Sea">
+<meta property="og:description" content="Transport, hotels, camps and unforgettable activities in Dahab, Sharm, Nuweiba and Taba.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="loader" id="loader"><span>SAHRA</span></div>
+<a class="skip" href="#page">Skip to content</a>
+<canvas id="world" aria-hidden="true"></canvas>
+<div class="cursor" id="cursor" aria-hidden="true"><span>View</span></div>
+<div class="chapter" id="chapter" aria-hidden="true"><i><b id="chBar"></b></i><span id="chName">The desert</span></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#/">Sahra</a>
+  <nav class="links" id="links">
+    <a href="#services">Services</a>
+    <a href="#ops">Transport</a>
+    <a href="#stays">Stays</a>
+    <a href="#acts">Activities</a>
+    <button class="pill" data-chat>Ask our AI</button>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<main id="page">
+
+  <section class="hero" id="top">
+    <div class="hero-in" id="heroIn">
+      <div class="line"><h1 id="bigName" aria-label="Sahra"></h1></div>
+      <p class="sub">Sinai, from the desert to the Red Sea</p>
+      <div class="cta">
+        <a class="btn" href="#stays">Find your stay</a>
+        <button class="btn ghost" data-chat>Plan with our AI</button>
+      </div>
+    </div>
+    <div class="cue"><span>Scroll</span><i></i></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="mq" id="mq"></div></div>
+
+  <section class="veil v-first" id="services">
+    <div class="wrap">
+      <div class="head rv"><h2>Everything for the journey, in one place</h2><p>We move you, house you and take you to the best of Sinai.</p></div>
+      <div class="svc" id="svc"></div>
+    </div>
+  </section>
+
+  <section class="veil" id="plan">
+    <div class="wrap">
+      <div class="head rv"><h2>How it works</h2><p>From first message to the moment you arrive.</p></div>
+      <ol class="steps">
+        <li class="rv"><b>1</b><h3>Tell us your plan</h3><p>Dates, group size and what you love. Ask our AI or message us on WhatsApp.</p></li>
+        <li class="rv"><b>2</b><h3>We build the trip</h3><p>Transport, stay and activities, with a clear price before you decide.</p></li>
+        <li class="rv"><b>3</b><h3>You arrive</h3><p>A driver, a room and a guide are waiting for you in Sinai.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="veil" id="ops">
+    <div class="wrap">
+      <div class="head rv"><h2>Operation</h2><p>Private vans, coaches and flights, planned door to door.</p></div>
+      <div class="grid g3" id="opsGrid"></div>
+    </div>
+  </section>
+
+  <section class="veil v-last" id="stays">
+    <div class="wrap">
+      <div class="head rv"><h2>Hotels &amp; camps</h2><p>Open any place to see its full page.</p></div>
+      <div class="tabs rv" id="tabs"><button class="on" data-k="all">All</button><button data-k="Hotel">Hotels</button><button data-k="Camp">Camps</button></div>
+      <div class="grid g4" id="stayGrid"></div>
+    </div>
+  </section>
+
+  <section class="hs" id="acts">
+    <div class="wrap head rv"><h2>Travel's activities</h2><p>Sea, desert, mountain and sky. Scroll sideways through all of them.</p></div>
+    <div class="track" id="track"></div>
+  </section>
+
+  <section class="finale" id="finale">
+    <div class="wrap">
+      <h2 class="rv">Tonight, the sky is yours.</h2>
+      <p class="rv">Tell us your dates and we will build the trip around them.</p>
+      <div class="cta rv"><button class="btn" data-chat>Start with our AI</button><a class="btn ghost" id="wa" target="_blank" rel="noopener">WhatsApp us</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div><b class="brand">Sahra</b><p>Dahab · Sharm · Nuweiba · Taba</p></div>
+      <div><p><a id="mail"></a></p><p>© 2026 Sahra Travel</p></div>
+    </div>
+  </footer>
+</main>
+
+<!-- Detail page (hotel / camp / activity / transport) -->
+<div class="detail" id="detail" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Details" data-lenis-prevent>
+  <div class="dbg" id="dbg"></div>
+  <button class="back" id="back">Back</button>
+  <article class="dc" id="dc"></article>
+</div>
+
+<!-- AI concierge -->
+<button class="fab" id="fab" aria-label="Open AI concierge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></button>
+<aside class="chat" id="chat" aria-label="AI concierge">
+  <header><b>Sahra concierge</b><button id="chatX" aria-label="Close">×</button></header>
+  <div class="msgs" id="msgs" data-lenis-prevent aria-live="polite"></div>
+  <div class="qr" id="qr"></div>
+  <div class="cin"><input id="ci" placeholder="Ask about stays, trips, prices…" autocomplete="off"><button id="cs">Send</button></div>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/photos.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
