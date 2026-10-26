@@ -1,0 +1,2 @@
+Put this hotel's videos here (.mp4 .mov).
+Then double-click UPDATE-MEDIA.bat in the main folder.

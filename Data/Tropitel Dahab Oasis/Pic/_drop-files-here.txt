@@ -1,0 +1,2 @@
+Put this hotel's photos here (.jpg .png .webp).
+Then double-click UPDATE-MEDIA.bat in the main folder.

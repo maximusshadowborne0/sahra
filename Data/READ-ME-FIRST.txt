@@ -1,0 +1,11 @@
+DROP YOUR FILES HERE
+====================
+Each hotel has its own folder with two sub-folders:
+   Pic  -> photos (.jpg .png .webp)
+   Vid  -> videos (.mp4 .mov)
+
+After adding files, double-click  UPDATE-MEDIA.bat  (Windows)  or run  ./update-media.sh  (Mac/Linux)
+in the main folder. The website updates itself. Run it again whenever you add more.
+
+Want the pictures to be collected automatically from the hotel links?  Double-click GET-PICTURES.bat.
+Camp Whales is already installed (43 photos, 7 videos).

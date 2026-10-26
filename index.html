@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sahra — Sinai, from the desert to the Red Sea</title>
+<script>document.documentElement.className+=" js"</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sahra: hotels, camps, transport and unforgettable activities across Sinai — Dahab, Sharm, Nuweiba, Taba. Browse stays by price range.">
+<meta name="theme-color" content="#142B35">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Sahra — Sinai, from the desert to the Red Sea">
+<meta property="og:description" content="Hotels, camps, transport and activities across Sinai, grouped by price range.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#top">Skip to content</a>
+<div class="loader" id="loader">
+  <div class="ld-in">
+    <img class="ld-logo" src="assets/logo-full.jpg" alt="Sahra">
+    <i class="ld-bar"><b id="ldBar"></b></i>
+  </div>
+</div>
+<div class="prog" id="prog"></div>
+<div class="glow" id="glow" aria-hidden="true"></div>
+<canvas id="world" aria-hidden="true"></canvas>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9B8"/><stop offset="1" stop-color="#D8B27C"/></linearGradient>
+    <symbol id="mark" viewBox="0 0 64 64"><circle cx="32" cy="25" r="13" fill="url(#mg)"/><path d="M3 47C14 33 25 34 33 42s19 7 28-5v25H3z" fill="#B96545"/><path d="M3 53c13-6 23-2 31 2s19 3 27-3v10H3z" fill="#176B78"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#/" aria-label="Sahra home"><span id="brandLogo"><img src="assets/logo-emblem.png" alt=""></span><b>Sahra</b></a>
+  <nav class="links" id="links">
+    <a href="#services">Services</a>
+    <a href="#ranges">Price ranges</a>
+    <a href="#stays">Stays</a>
+    <a href="#acts">Activities</a>
+    <a href="#plan">Plan a trip</a>
+    <button class="pill" data-chat>Ask our AI</button>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<main id="page">
+
+  <section class="hero" id="top">
+    <div class="hero-in" id="heroIn">
+      <img class="hero-emblem" src="assets/logo-emblem.png" alt="" width="84" height="84">
+      <p class="eyebrow">Dahab · Sharm · Nuweiba · Taba</p>
+      <div class="line"><h1 id="bigName" aria-label="Sahra"></h1></div>
+      <p class="sub">Sinai, from the desert to <span class="rot" id="rot">the Red Sea</span></p>
+      <div class="cta">
+        <a class="btn mag" href="#stays">Find your stay</a>
+        <button class="btn ghost mag" data-chat>Plan with our AI</button>
+      </div>
+    </div>
+    <ul class="stats" id="stats"></ul>
+    <div class="cue"><span>Scroll</span><i></i></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="mq" id="mq"></div></div>
+
+  <section class="veil" id="services">
+    <div class="wrap">
+      <div class="head rv"><span class="kick">01 — Services</span><h2>Everything for the journey, in one place</h2><p>We move you, house you and take you to the best of Sinai.</p></div>
+      <div class="svc" id="svc"></div>
+    </div>
+  </section>
+
+  <section class="veil" id="ops">
+    <div class="wrap">
+      <div class="head rv"><span class="kick">02 — Operation</span><h2>Operation</h2><p>Private vans, coaches and flights, planned door to door.</p></div>
+      <div class="grid g3" id="opsGrid"></div>
+    </div>
+  </section>
+
+  <section class="veil" id="ranges">
+    <div class="wrap">
+      <div class="head rv"><span class="kick">03 — Price ranges</span><h2>Choose your range</h2><p>Every place we work with, grouped by budget. Tap a range to see its stays.</p></div>
+      <div class="ranges" id="rangeGrid"></div>
+    </div>
+  </section>
+
+  <section class="veil" id="stays">
+    <div class="wrap">
+      <div class="head rv"><span class="kick">04 — Stays</span><h2>Hotels &amp; camps</h2><p>Open any place for its photos, reels and booking links.</p></div>
+      <div class="tools rv">
+        <div class="tabs" id="kindTabs"></div>
+        <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Search a hotel or camp" autocomplete="off" aria-label="Search stays"></label>
+      </div>
+      <div class="tabs tiers rv" id="tierTabs"></div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="grid g4" id="stayGrid"></div>
+      <p class="empty" id="empty" hidden>No place matches. Try another range or clear the search.</p>
+    </div>
+  </section>
+
+  <section class="spot" id="spot" hidden>
+    <div class="wrap spot-in">
+      <div class="spot-copy rv"><p class="eyebrow dark">Spotlight</p><h2 id="spotName"></h2><p id="spotText"></p><div class="cta" style="justify-content:flex-start"><a class="btn mag" id="spotBtn" href="#/">See the full page</a></div></div>
+      <div class="phones" id="phones"></div>
+    </div>
+  </section>
+
+  <section class="hs" id="acts">
+    <div class="wrap"><div class="head rv"><span class="kick">05 — Activities</span><h2>Travel's activities</h2><p>Sea, desert, mountain and sky. Scroll sideways through all of them.</p></div></div>
+    <div class="track" id="track" data-lenis-prevent-touch></div>
+  </section>
+
+  <section class="veil" id="how">
+    <div class="wrap">
+      <div class="head rv"><span class="kick">06 — How it works</span><h2>Three steps to your trip</h2><p>No hidden steps. You choose, we confirm, we move you.</p></div>
+      <ol class="steps" id="steps">
+        <li class="rv"><b>1</b><h3>Choose your range</h3><p>Pick Essential, Comfort, Premium or Luxury, then open any hotel or camp to see its photos and links.</p></li>
+        <li class="rv" style="--d:.1s"><b>2</b><h3>Tell us your dates</h3><p>Use the form below, our AI concierge or WhatsApp. Dates, guests and budget are all we need.</p></li>
+        <li class="rv" style="--d:.2s"><b>3</b><h3>We confirm &amp; move you</h3><p>We check availability, send the best rate and arrange your van, bus or flight transfer.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="veil" id="plan">
+    <div class="wrap plan-in">
+      <div class="head rv"><span class="kick">07 — Plan a trip</span><h2>Tell us about your trip</h2><p>This sends your request straight to our team. Nothing is booked until we confirm.</p></div>
+      <form class="plan rv" id="planForm" novalidate>
+        <label>Your name<input id="pName" name="name" autocomplete="name" placeholder="Your name"></label>
+        <label>Arrival<input id="pIn" type="date" name="in"></label>
+        <label>Departure<input id="pOut" type="date" name="out"></label>
+        <label>Guests<input id="pGuests" type="number" name="guests" min="1" max="200" value="2" inputmode="numeric"></label>
+        <label>Budget range<select id="pTier" name="tier"><option value="">Not sure yet</option></select></label>
+        <label>Place you like<select id="pStay" name="stay"><option value="">Any, suggest for me</option></select></label>
+        <label class="full">Anything else?<textarea id="pMsg" name="msg" rows="3" placeholder="Transfers, activities, special requests"></textarea></label>
+        <p class="err" id="pErr" role="alert" hidden></p>
+        <div class="cta full"><button class="btn mag" type="submit" id="pSend">Send my request</button><a class="btn ghost mag" id="pMail" href="#">Send by email</a></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="veil" id="mark-sec">
+    <div class="wrap mark-in">
+      <div class="mark-card tilt rv"><img src="assets/logo-full.jpg" alt="Sahra logo" loading="lazy"></div>
+      <div class="mark-copy rv">
+        <p class="eyebrow dark">The Sahra mark</p>
+        <h2>One circle, all of Sinai</h2>
+        <p>Our emblem holds everything we offer in a single golden ring.</p>
+        <ul class="sym">
+          <li><b>✦</b><span><strong>Compass star</strong> We guide you from the first message to the last transfer.</span></li>
+          <li><b>▲</b><span><strong>Mountains &amp; dunes</strong> The desert, canyons and Saint Catherine.</span></li>
+          <li><b>☼</b><span><strong>The setting sun</strong> Golden hours, camps and nights under the stars.</span></li>
+          <li><b>≈</b><span><strong>Sea &amp; reef</strong> The Red Sea, diving and the Blue Hole.</span></li>
+          <li><b>⛵</b><span><strong>The sailboat</strong> Yacht days from Dahab and Taba.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="finale" id="finale">
+    <div class="wrap">
+      <h2 class="rv">Tonight, the sky is yours.</h2>
+      <p class="rv">Tell us your dates and we will build the trip around them.</p>
+      <div class="cta rv"><button class="btn mag" data-chat>Start with our AI</button><a class="btn ghost mag" id="wa" target="_blank" rel="noopener">WhatsApp us</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div><b class="brand"><span><img src="assets/logo-emblem.png" alt=""></span><b>Sahra</b></b><p>Sinai, from the desert to the Red Sea.</p></div>
+      <div><h4>Explore</h4><p><a href="#stays">Hotels &amp; camps</a></p><p><a href="#ranges">Price ranges</a></p><p><a href="#acts">Activities</a></p><p><a href="#ops">Operation</a></p></div>
+      <div><h4>Contact</h4><p><a id="mail"></a></p><p><a id="wa2" target="_blank" rel="noopener">WhatsApp</a></p><p>Dahab · Sharm · Nuweiba · Taba</p></div>
+    </div>
+    <p class="copy">© 2026 Sahra Travel. Hotel names, photos and trademarks belong to their owners.</p>
+  </footer>
+</main>
+
+<!-- Detail page -->
+<div class="detail" id="detail" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Details" data-lenis-prevent>
+  <div class="dbg" id="dbg"></div>
+  <button class="back" id="back">← Back</button>
+  <article class="dc" id="dc"></article>
+</div>
+
+<!-- Lightbox + reel player -->
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Media viewer" data-lenis-prevent>
+  <button class="lb-x" id="lbX" aria-label="Close">×</button>
+  <button class="lb-n prev" id="lbP" aria-label="Previous">‹</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-n next" id="lbN" aria-label="Next">›</button>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<!-- AI concierge -->
+<button class="fab" id="fab" aria-label="Open AI concierge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></button>
+<aside class="chat" id="chat" aria-label="AI concierge">
+  <header><b>Sahra concierge</b><button id="chatX" aria-label="Close">×</button></header>
+  <div class="msgs" id="msgs" data-lenis-prevent aria-live="polite"></div>
+  <div class="qr" id="qr"></div>
+  <div class="cin"><input id="ci" placeholder="Ask about stays, budgets, trips…" autocomplete="off"><button id="cs">Send</button></div>
+</aside>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="js/hotels.js"></script>
+<script src="js/media.js"></script>
+<script src="js/data.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
